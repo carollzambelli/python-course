@@ -1,9 +1,6 @@
-# learn-python
+# Python Course
 
 Repositório destinado ao ensino da linguagem python para iniciantes.
-
-<img src="imgs/python.jpg" style="max-width:1000px; "/>
-
 
 ### Conteúdo
 ---
