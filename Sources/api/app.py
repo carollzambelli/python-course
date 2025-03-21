@@ -5,11 +5,11 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///api_class.db'
 db = SQLAlchemy(app)
 
-class Books(db.Model):
+class Books(db.Model): 
     titulo = db.Column(db.String, primary_key=True)
     autor = db.Column(db.String)
     
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():    
     livros = Books.query.all()
     return render_template('index.html', livros=livros)
@@ -20,7 +20,6 @@ def add_books():
     autor=request.form.get('autor')
     if titulo != '' and autor != '' :
         b = Books(titulo=titulo[0], autor=autor)
-        print(titulo, autor)
         db.session.add(b)
         db.session.commit()
     return redirect(url_for('index'))
@@ -32,6 +31,6 @@ def delete_book(titulo):
     db.session.commit()
     return redirect(url_for('index'))
 
-if __name__ == '__main__':
-    app.run()
-    
+
+if __name__ == "__main__":
+  app.run()
