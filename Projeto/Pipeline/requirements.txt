@@ -1,3 +1,0 @@
-SQLAlchemy==2.0.37
-pandas==2.2.2
-db-sqlite3==0.0.1

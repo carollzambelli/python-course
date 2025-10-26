@@ -4,15 +4,21 @@ Repositório destinado ao ensino da linguagem python para iniciantes.
 
 ### Conteúdo
 ---
-1. Fundamentos 1
-    - Tipos de Dados
+1. Fundamentos 
     - Estruturas Fundamentais
-2. Fundamentos 2
-    - Manipulação de arquivos
-    - Funções
-3. Manipulação de Dados
+    - Paths e leitura de arquivos
+    - Funções 
+2. Manipulação de Dados
+    - Numpy
     - Pandas
-    - Visualização de Dados
-4. Banco de Dados
-5. API
+3. Análise de Dados
+    - Matplotlip, Searborn
+    - Sckitlearn
+4. Projeto
 
+
+### Referências
+---
+1. https://python-guide-pt-br.readthedocs.io/pt-br/latest/
+2. https://greenteapress.com/thinkpython/html/index.html
+3. https://www.hackerrank.com/
