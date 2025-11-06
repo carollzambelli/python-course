@@ -46,6 +46,7 @@ Repositório destinado ao ensino da linguagem python para iniciantes.
 1. https://python-guide-pt-br.readthedocs.io/pt-br/latest/
 2. https://greenteapress.com/thinkpython/html/index.html
 3. https://www.hackerrank.com/
+4. https://peps.python.org/pep-0008/
 
 ### Links Úteis
 ---
