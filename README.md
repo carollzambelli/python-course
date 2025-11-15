@@ -11,9 +11,8 @@ Repositório destinado ao ensino da linguagem python para iniciantes.
 2. Manipulação de Dados
     - Numpy
     - Pandas
-    - Matplotlip, Searborn
 3. Análise de Dados
-    - Statsmodels
+    - Matplotlip, Searborn
     - Sckitlearn
 4. Projeto
 
