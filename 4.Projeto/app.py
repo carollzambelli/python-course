@@ -8,6 +8,9 @@ st.write("Churn rate, ou simplesmente churn, é uma métrica de negócios que me
 "assinantes ou usuários que deixam de fazer negócios com uma empresa ou cancelam seus serviços em um determinado" \
 "período de tempo. Em português, o termo pode ser traduzido como taxa de rotatividade ou taxa de evasão de clientes.")
 
+## -----------
+## BIG NUMBERS
+## -----------
 
 a, b, c = st.columns(3)
 a.metric("**Clientes Ativos**", "215k", "-15%")
@@ -38,6 +41,10 @@ def user_input_features():
 
 df = user_input_features()
 
+## -----------
+## DATA PROCESS
+## -----------
+
 st.subheader("Dados de input do modelo")
 
 st.write("Dados brutos")
@@ -52,8 +59,6 @@ df['OnlineSecurity_No internet service'] = df['OnlineSecurity'].apply(lambda x: 
 df['TechSupport_No'] = df['TechSupport'].apply(lambda x: 1 if x == "No" else 0)
 df['TechSupport_Yes'] = df['TechSupport'].apply(lambda x: 1 if x == "Yes" else 0)
 df['TechSupport_No internet service'] = df['TechSupport'].apply(lambda x: 1 if x == "No internet service" else 0)
-
-
 df_categorical = df.drop(["TechSupport", "OnlineSecurity"]+num, axis=1)
 
 load_scaler = pickle.load(open("assets/scaler.pkl", 'rb'))
@@ -72,11 +77,15 @@ df_processed = df_processed[[
 st.write("Dados tratados")
 st.write(df_processed)
 
+## -----------
+## MODEL
+## -----------
+
 load_model = pickle.load(open("assets/churn_tree_model.pkl", 'rb'))
 predictions = load_model.predict(df_processed)
 pred = round(predictions[0],2)
 
 if pred == 0:
-    st.write("Para este cliente a previsão é de: **NÃO CHURN** ")
+    st.write(":white_check_mark: NÃO PROPENSO AO CHURN")
 else:
-    st.write("Para este cliente a previsão é de: **CHURN** ")
+    st.write(":x: PROPENSO AO CHURN")

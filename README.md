@@ -20,6 +20,9 @@ Repositório destinado ao ensino da linguagem python para iniciantes.
 ---
 1. Ambiente virtual
 ```
+python -m venv env 
+source env/bin/activate
+## Windows
 >> python -m venv env 
 >> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 >> .\env\Scripts\Activate.ps1 
