@@ -4,19 +4,25 @@ Repositório destinado ao ensino da linguagem python para iniciantes.
 
 ### Conteúdo
 ---
-1. Warmup 
+0. Dados: datasets utilizados ao longo do curso
+1. Fundamentos 
     - Estruturas Fundamentais
     - Paths e leitura de arquivos
     - Funções 
-2. Manipulação de Dados
+2. Sources
+    - API com Flask
+    - Sqlite e SqlAnchemy
+    - Bancos Vetoriais
+3. Manipulação de Dados
     - Numpy
     - Pandas
-3. Análise de Dados
-    - Matplotlip, Searborn
-    - Sckitlearn
+    - Análise de Dados
 4. Projeto
+    - ML Models
+    - Data Pipeline
+5. Exercícios
 
-### Comandos básicos
+### Setup Projetos
 ---
 1. Ambiente virtual
 ```
