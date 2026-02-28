@@ -1,6 +1,7 @@
 import streamlit as st 
 import pandas as pd
 import pickle 
+from preprocess import prepare_data
 
 st.header("Predição de Churn - TELCO")
 st.write("Churn rate, ou simplesmente churn, é uma métrica de negócios que mede a taxa de clientes," \
@@ -45,33 +46,10 @@ df = user_input_features()
 ## -----------
 
 st.subheader("Dados de input do modelo")
-
 st.write("Dados brutos")
 st.write(df)
 
-num = ["tenure", "MonthlyCharges", "TotalCharges"]
-
-df['OnlineSecurity_No'] = df['OnlineSecurity'].apply(lambda x: 1 if x == "No" else 0)
-df['OnlineSecurity_Yes'] = df['OnlineSecurity'].apply(lambda x: 1 if x == "Yes" else 0)
-df['OnlineSecurity_No internet service'] = df['OnlineSecurity'].apply(lambda x: 1 if x == "No internet service" else 0)
-
-df['TechSupport_No'] = df['TechSupport'].apply(lambda x: 1 if x == "No" else 0)
-df['TechSupport_Yes'] = df['TechSupport'].apply(lambda x: 1 if x == "Yes" else 0)
-df['TechSupport_No internet service'] = df['TechSupport'].apply(lambda x: 1 if x == "No internet service" else 0)
-df_categorical = df.drop(["TechSupport", "OnlineSecurity"]+num, axis=1)
-
-load_scaler = pickle.load(open("assets/scaler.pkl", 'rb'))
-df_std = pd.DataFrame(load_scaler.transform(df[num]), columns=num)
-df_std['charges_ratio'] = df_std['tenure']*df_std['MonthlyCharges'] / (df_std['TotalCharges'] + 1)
-
-df_processed = pd.concat([df_std, df_categorical], axis=1)
-
-
-df_processed = df_processed[[
-    'tenure','MonthlyCharges','TotalCharges','OnlineSecurity_No',
-    'OnlineSecurity_No internet service','OnlineSecurity_Yes','TechSupport_No',
-   'TechSupport_No internet service','TechSupport_Yes','charges_ratio'
-   ]]
+df_processed = prepare_data(df)
 
 st.write("Dados tratados")
 st.write(df_processed)
@@ -80,7 +58,7 @@ st.write(df_processed)
 ## MODEL
 ## -----------
 
-load_model = pickle.load(open("assets/churn_tree_model.pkl", 'rb'))
+load_model = pickle.load(open("../assets/lr_model.pkl", 'rb'))
 predictions = load_model.predict(df_processed)
 pred = round(predictions[0],2)
 

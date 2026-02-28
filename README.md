@@ -12,15 +12,16 @@ Repositório destinado ao ensino da linguagem python para iniciantes.
 2. Sources
     - API com Flask
     - Sqlite e SqlAnchemy
-    - Bancos Vetoriais
+    - ChromaDB
 3. Manipulação de Dados
     - Numpy
     - Pandas
     - Análise de Dados
-4. Projeto
-    - ML Models
-    - Data Pipeline
-5. Exercícios
+4. Projeto: ML Models
+    - Sklearn
+    - Virtualenv e tox
+    - Streamlit
+5. Prática
 
 ### Setup Projetos
 ---
