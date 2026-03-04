@@ -3,7 +3,7 @@ teste Configuration of all relevant parameters to use in the project and data fo
 """
 
 from pathlib import Path
-from typing import Dict, List
+from typing import List
 from pydantic import BaseModel
 from strictyaml import load
 
@@ -13,22 +13,15 @@ CONFIG_FILE_PATH = ASSETS_PATH / "config.yml"
 
 class ModelConfig(BaseModel):
     """
-    All configuration relevant to model
-    training and feature engineering.
+    All configuration relevant to model application
     """
-    target: str
-    production_model_file: str
     trained_model_file: str
-    train_data_path : str
-    predict_data_path : str
-    result_data_path : str
-    models: List[str]
-    erro : float
+    preprocess_model_file : str
 
 class DataConfig(BaseModel):
     """
     All configuration relevant to data
-    sanitization and transformer classes
+    variables manipulation
     """
 
     quali_variables: List[str]
@@ -40,22 +33,22 @@ class Config(BaseModel):
     data_config: DataConfig
     ml_config: ModelConfig
 
-class TrainDataSchema(BaseModel):
+class ModelDataSchema(BaseModel):
     """
-    Data Input schema
+    Data Model Input schema
     """
-    IDADE_CLIENTE: int
-    RENDA_MENSAL_CLIENTE: float
-    BEHAVIOUR_SCORE_CLIENTE: float
-    QTD_TRANSACOES_3M: float
-    QTD_ITENS_3M: float
-    VALOR_GASTO_3M: float
-    TICKET_MEDIO_3M: float
-    FLAG_ELETRONICOS_3M: int
-    SATISFACAO_ULTIMA_COMPRA: str
+    tenure: int
+    MonthlyCharges : int
+    TotalCharges : float
+    OnlineSecurity_No : str
+    OnlineSecurity_No_internet_service : str
+    OnlineSecurity_Yes : str
+    TechSupport_No : str
+    TechSupport_No_internet_service : str
+    TechSupport_Yes : str
 
 class MultipleDataSchema(BaseModel):
-    inputs: List[TrainDataSchema]
+    inputs: List[ModelDataSchema]
 
 def create_and_validate_config(cfg_path = CONFIG_FILE_PATH) -> Config:
     """Run validation on config values."""

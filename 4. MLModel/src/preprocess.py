@@ -1,15 +1,8 @@
 import pandas as pd
 import pickle 
-
-
-lista_X_quanti = ["tenure","MonthlyCharges","TotalCharges"]
-lista_X_quali = ['OnlineSecurity','TechSupport']
-model_vars = ['tenure', 'MonthlyCharges', 'TotalCharges', 'OnlineSecurity_No',
-       'OnlineSecurity_No internet service', 'OnlineSecurity_Yes',
-       'TechSupport_No', 'TechSupport_No internet service', 'TechSupport_Yes']
-
-load_preprocessor = pickle.load(open("../assets/preprocessador.pkl", 'rb'))
-load_model = pickle.load(open("../assets/lr_model.pkl", 'rb'))
+import numpy as np
+from pydantic import ValidationError
+from core import config, MultipleDataSchema
 
 
 def validate_inputs(raw_data: pd.DataFrame):
@@ -29,14 +22,28 @@ def validate_inputs(raw_data: pd.DataFrame):
 
 def prepare_data(df):
 
-    df_processed = load_preprocessor.transform(df[lista_X_quanti + lista_X_quali]) 
-    nomes_quali = list(load_preprocessor.named_transformers_['quali'].get_feature_names_out(lista_X_quali)) 
-    nomes_variaveis =  list(lista_X_quanti) + nomes_quali
-    X_tratada = pd.DataFrame(df_processed, columns=nomes_variaveis)
+    try:
+        load_preprocessor = pickle.load(
+            open(config.ml_config.preprocess_model_file, 'rb'))
+    except Exception as expection_error:
+        #todo: gravar erro
+        pass
 
-    vars = list(set(model_vars) - set(nomes_variaveis))
-    if len(vars) > 0:
-        for col in vars:
-            X_tratada[col] = 0
+    data, errors = validate_inputs(df)
+    if  not errors:
 
-    return X_tratada[model_vars]
+        df_processed = load_preprocessor.transform(data)
+        nomes_quali = list(load_preprocessor.named_transformers_['quali'].get_feature_names_out(
+            config.data_config.quali_variables)) 
+        nomes_variaveis =  list(config.data_config.quali_variables) + nomes_quali
+
+        #acrescentar um tratamento snake case para o nomde das variáveis aqui
+
+        X_tratada = pd.DataFrame(df_processed, columns=nomes_variaveis)
+
+        vars = list(set(MultipleDataSchema.inputs) - set(nomes_variaveis))
+        if len(vars) > 0:
+            for col in vars:
+                X_tratada[col] = 0
+
+    return X_tratada[MultipleDataSchema.inputs]

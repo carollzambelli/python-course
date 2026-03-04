@@ -19,7 +19,7 @@ Repositório destinado ao ensino da linguagem python para iniciantes.
     - Análise de Dados
 4. Projeto: ML Models
     - Sklearn
-    - Virtualenv e tox
+    - Pydantic
     - Streamlit
 5. Prática
 

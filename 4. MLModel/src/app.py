@@ -1,6 +1,7 @@
 import streamlit as st 
 import pandas as pd
 import pickle 
+from core import config
 from preprocess import prepare_data
 
 st.header("Predição de Churn - TELCO")
@@ -58,7 +59,8 @@ st.write(df_processed)
 ## MODEL
 ## -----------
 
-load_model = pickle.load(open("../assets/lr_model.pkl", 'rb'))
+load_model = pickle.load(
+    open(config.ml_config.trained_model_file, 'rb'))
 predictions = load_model.predict(df_processed)
 pred = round(predictions[0],2)
 

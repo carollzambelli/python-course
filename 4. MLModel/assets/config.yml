@@ -1,24 +1,23 @@
-quali_variables:
-  - FLAG_ELETRONICOS_3M
-  - SATISFACAO_ULTIMA_COMPRA
-
 quanti_variables:
-  - IDADE_CLIENTE
-  - RENDA_MENSAL_CLIENTE
-  - BEHAVIOUR_SCORE_CLIENTE
-  - QTD_TRANSACOES_3M
-  - QTD_ITENS_3M
-  - VALOR_GASTO_3M
-  - TICKET_MEDIO_3M
+  - tenure
+  - MonthlyCharges
+  - TotalCharges
 
-target: VALOR_GASTO_PROX_12M
+quali_variables:
+  - OnlineSecurity
+  - TechSupport
 
-trained_model_file: models/trained/trained
+model_variables:
+  - tenure
+  - MonthlyCharges
+  - TotalCharges
+  - OnlineSecurity_No
+  - OnlineSecurity_No_internet_service
+  - OnlineSecurity_Yes
+  - TechSupport_No
+  - TechSupport_No_internet_service
+  - TechSupport_Yes
 
-production_model_file: models/production/model.pkl
+trained_model_file: assets/lr_model.pkl
 
-train_data_path : 'datasets/Potencial_Novos_Clientes.txt'
-
-predict_data_path : 'datasets/X_teste.csv'
-
-result_data_path : 'datasets/results'
+preprocess_model_file: assets/preprocessador.pkl
