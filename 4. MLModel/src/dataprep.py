@@ -1,2 +1,0 @@
-# preenchimento de nulo
-# tipagem

@@ -13,6 +13,7 @@ Repositório destinado ao ensino da linguagem python para iniciantes.
     - API com Flask
     - Sqlite e SqlAnchemy
     - ChromaDB
+    - Requests
 3. Manipulação de Dados
     - Numpy
     - Pandas

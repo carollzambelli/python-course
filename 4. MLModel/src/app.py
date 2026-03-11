@@ -1,7 +1,7 @@
 import streamlit as st 
 import pandas as pd
 import pickle 
-from core import config
+from core import config, ASSETS_PATH
 from preprocess import prepare_data
 
 st.header("Predição de Churn - TELCO")
@@ -49,6 +49,8 @@ df = user_input_features()
 st.subheader("Dados de input do modelo")
 st.write("Dados brutos")
 st.write(df)
+
+print(type(df))
 
 df_processed = prepare_data(df)
 
