@@ -1,12 +1,17 @@
 import utils as utils
 import logging
-from config import configs
+from core import configs
 
-
-config_file = configs
 logging.basicConfig(level=logging.INFO)
 
-logging.info("Iniciando a ingestão")
-utils.ingestion(configs, config_file)
-utils.preparation(configs, config_file)
-    
+if __name__ == '__main__':
+    logging.info("Iniciando processo de ingestão")
+    try:
+        df = utils.ingestion(configs)
+    except:
+        logging.error("Erro de ingestão de dados")
+    try:
+        utils.preparation(df, configs)
+        logging.info("Fim do processo de ingestão")
+    except:
+        logging.error("Erro de preparação")

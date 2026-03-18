@@ -2,7 +2,7 @@ import pandas as pd
 import requests
 import utils as utils
 
-def ingestion(configs, config_file):
+def ingestion(configs):
     """
     Função de ingestão dos dados
     Outputs: Salva base raw em local específico e retorna o nome do arquivo
@@ -10,14 +10,25 @@ def ingestion(configs, config_file):
     return True
 
 
-def validation_inputs():
+def validation_inputs(df, configs):
+    """
+    Função de validação dos dados antes de salvar no banco de dados
+    Output: Se não estiver no padrão correto interrompe o processo e salva alerta em 
+    um arquivo de logs. Se estiver correto, salva log com mensagem: 'Dados corretos'
+    """
     return True
 
-def preparation(configs, config_file):
+
+def preparation(df, configs):
     """
-    Função de preparação dos dados: renomeia, tipagem, normaliza strings
-    Arguments: file -> nome do arquivo raw
-    Outputs: Salva base limpa em local específico
+    Função de preparação dos dados: 
+        - renomeia colunas,
+        - Ajustas tipo dos dados
+        - Remove caracter especial
+    Outputs: Salva dados tratados em base sqlite no diretorio assets
     """
+
+    #data = validate_inputs(df)
+
     return True
 
