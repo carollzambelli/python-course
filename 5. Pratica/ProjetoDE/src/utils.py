@@ -4,8 +4,9 @@ import utils as utils
 
 def ingestion(configs):
     """
-    Função de ingestão dos dados
-    Outputs: Salva base raw em local específico e retorna o nome do arquivo
+    Função de ingestão dos dados.
+    Consome dados da api: https://randomuser.me, 10 resultados por página pelo menos
+    Outputs: Retorna dataframe
     """
     return True
 
@@ -22,8 +23,8 @@ def validation_inputs(df, configs):
 def preparation(df, configs):
     """
     Função de preparação dos dados: 
-        - renomeia colunas,
-        - Ajustas tipo dos dados
+        - Renomeia colunas
+        - Ajusta tipo dos dados
         - Remove caracter especial
     Outputs: Salva dados tratados em base sqlite no diretorio assets
     """
