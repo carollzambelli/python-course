@@ -38,7 +38,7 @@ class RawDataSchema(BaseModel):
     Data Model Input schema
     """
     tenure: int
-    MonthlyCharges : int
+    MonthlyCharges : float
     TotalCharges : float
     OnlineSecurity: str
     TechSupport : str
